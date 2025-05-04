@@ -22,7 +22,7 @@ export class CreateTaskComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
-  form!: FormGroup; // Properly typed as FormGroup
+  form!: FormGroup;
   id: string | null = null;
   aircraftList: Aircraft[] = [];
 

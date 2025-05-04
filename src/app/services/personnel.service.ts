@@ -26,5 +26,4 @@ export class PersonnelService {
     return this.http.delete<void>(`${this.host}/${id}`);
   }
 }
-// src/app/services/aircraft.service.ts
-// import { Injectable }    from '@angular/core';
+
