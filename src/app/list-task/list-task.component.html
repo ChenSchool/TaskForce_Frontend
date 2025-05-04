@@ -1,0 +1,26 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2>Tasks</h2>
+  <button class="btn btn-primary" [routerLink]="['/tasks/new']">+ New Task</button>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th><th>Aircraft</th><th>Shift</th><th>Description</th><th>Status</th><th>Date</th><th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let t of tasks">
+      <td>{{ t.id }}</td>
+      <td>{{ getAircraftTail(t.aircraft_id) }}</td>
+      <td>{{ t.shift }}</td>
+      <td>{{ t.description }}</td>
+      <td>{{ t.status }}</td>
+      <td>{{ t.date }}</td>
+      <td>
+        <button class="btn btn-sm btn-secondary me-2" (click)="edit(t.id)">Edit</button>
+        <button class="btn btn-sm btn-danger" (click)="delete(t.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

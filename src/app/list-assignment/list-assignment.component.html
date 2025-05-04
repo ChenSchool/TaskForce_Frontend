@@ -1,0 +1,27 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2>Assignments</h2>
+  <button class="btn btn-primary" style="margin-top: auto;" [routerLink]="['/assignments/new']">+ New Assignment</button>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr><th>ID</th><th>Task</th><th>Personnel</th><th>Actions</th></tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let a of assignments">
+      <td>{{ a.id }}</td>
+      <td>{{ getTaskDescription(a.task_id) }}</td>
+      <td>
+        <ul class="ps-3 mb-0">
+          <li *ngFor="let line of a.lines">
+            {{ getPersonnelName(line.personnel_id) }} ({{ line.role }})
+          </li>
+        </ul>
+      </td>
+      <td>
+        <button class="btn btn-sm btn-secondary me-2" (click)="edit(a.id!)">Edit</button>
+        <button class="btn btn-sm btn-danger" (click)="delete(a.id!)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

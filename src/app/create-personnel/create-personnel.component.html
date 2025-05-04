@@ -1,0 +1,21 @@
+<h2>{{ id ? 'Edit' : 'New' }} Personnel</h2>
+<form [formGroup]="form" (ngSubmit)="save()">
+  <div class="mb-3">
+    <label>Name</label>
+    <input formControlName="name" class="form-control" />
+  </div>
+  <div class="mb-3">
+    <label>Specialty</label>
+    <select formControlName="specialty" class="form-select">
+      <option *ngFor="let s of ['A&P','Avionics','Integration','AMT']" [value]="s">{{ s }}</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label>Role</label>
+    <select formControlName="role" class="form-select">
+      <option *ngFor="let r of ['Captain','Coordinator','Collaborator','Trainee']" [value]="r">{{ r }}</option>
+    </select>
+  </div>
+  <button class="btn btn-success" [disabled]="form.invalid">{{ id ? 'Update' : 'Create' }}</button>
+  <button class="btn btn-link" [routerLink]="['/personnel']">Cancel</button>
+</form>

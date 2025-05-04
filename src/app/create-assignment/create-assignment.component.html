@@ -1,0 +1,32 @@
+<h2>New Assignment</h2>
+<form [formGroup]="form" (ngSubmit)="save()">
+  <div class="mb-3">
+    <label>Task</label>
+    <select formControlName="task_id" class="form-select">
+      <option [ngValue]="null">— Select Task —</option>
+      <option *ngFor="let t of taskList" [ngValue]="t.id">{{t.description}} ({{t.date}})</option>
+    </select>
+  </div>
+  <div formArrayName="lines">
+    <div *ngFor="let grp of lines.controls; let i=index" [formGroupName]="i" class="row g-2 mb-2">
+      <div class="col">
+        <select formControlName="personnel_id" class="form-select">
+          <option [ngValue]="null">— Person —</option>
+          <option *ngFor="let p of personList" [ngValue]="p.id">{{p.name}}</option>
+        </select>
+      </div>
+      <div class="col">
+        <select formControlName="role" class="form-select">
+          <option *ngFor="let r of ['Captain','Coordinator','Collaborator','Trainee']" [value]="r">{{r}}</option>
+        </select>
+      </div>
+      <div class="col-auto">
+        <button type="button" class="btn btn-outline-danger" (click)="removeLine(i)">×</button>
+      </div>
+    </div>
+  </div>
+  <button type="button" class="btn btn-link" (click)="addLine()">+ Add Person</button>
+  <hr />
+  <button class="btn btn-success" [disabled]="form.invalid">Save Assignment</button>
+  <button class="btn btn-link" [routerLink]="['/assignments']">Cancel</button>
+</form>

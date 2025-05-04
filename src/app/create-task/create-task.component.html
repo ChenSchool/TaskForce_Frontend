@@ -1,0 +1,32 @@
+<h2>{{ id ? 'Edit' : 'New' }} Task</h2>
+<form [formGroup]="form" (ngSubmit)="save()">
+  <div class="mb-3">
+    <label>Aircraft</label>
+    <select formControlName="aircraft_id" class="form-select">
+      <option [ngValue]="null">— Select Aircraft —</option>
+      <option *ngFor="let a of aircraftList" [ngValue]="a.id">{{ a.tail_number }}</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label>Shift</label>
+    <select formControlName="shift" class="form-select">
+      <option *ngFor="let s of ['1st','2nd','3rd']" [value]="s">{{ s }}</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label>Status</label>
+    <select formControlName="status" class="form-select">
+      <option *ngFor="let st of ['Incomplete','Complete']" [value]="st">{{ st }}</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label>Date</label>
+    <input type="date" formControlName="date" class="form-control" />
+  </div>
+  <div class="mb-3">
+    <label>Description</label>
+    <textarea formControlName="description" class="form-control"></textarea>
+  </div>
+  <button class="btn btn-success" [disabled]="form.invalid">{{ id ? 'Update' : 'Create' }}</button>
+  <button class="btn btn-link" [routerLink]="['/tasks']">Cancel</button>
+</form>

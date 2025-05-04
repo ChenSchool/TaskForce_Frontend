@@ -1,0 +1,22 @@
+<div class="d-flex justify-content-between mb-3">
+    <h2>Aircraft</h2>
+    <button class="btn btn-primary" style="margin-top: auto;" [routerLink]="['/aircraft/new']">
+      + New Aircraft
+    </button>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr><th>ID</th><th>Tail #</th><th></th></tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let a of aircraft">
+        <td>{{a.id}}</td>
+        <td>{{a.tail_number}}</td>
+        <td>
+          <button class="btn btn-sm btn-secondary me-2" (click)="edit(a.id)">Edit</button>
+          <button class="btn btn-sm btn-danger" (click)="delete(a.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
